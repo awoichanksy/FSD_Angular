@@ -28,7 +28,7 @@ export class IssuesService {
   getIssues(): Observable<Issue[]> {
     return this.http.get<Issue[]>(this.issuesUrl)
       .pipe(
-        catchError(this.handleError('getHeroes', []))
+        catchError(this.handleError('getIssues', []))
       );
   }
 
