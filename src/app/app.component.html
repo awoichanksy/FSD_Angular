@@ -1,4 +1,20 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <app-issues></app-issues>
+<div class="whole-page-container mat-app-background">
+  <div class="page-header">
+    <h1>Issues Management System</h1>
+  </div>
+
+  <mat-sidenav-container class="center-container">
+    <mat-sidenav opened mode="side">
+      <div class="mat-nav-item">
+        <a routerLink="/issues" routerLinkActive="active">All Issues</a>
+      </div>
+      <div class="mat-nav-item">
+        <a routerLink="/issues" routerLinkActive="active">All Issues</a>
+      </div>
+      <div class="mat-nav-item">
+        <a routerLink="/issues" routerLinkActive="active">All Issues</a>
+      </div>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
+  </mat-sidenav-container>
 </div>

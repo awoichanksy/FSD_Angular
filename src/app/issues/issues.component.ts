@@ -18,8 +18,8 @@ export class IssuesComponent implements OnInit {
   columns = [
     {columnDef: 'oid', header: 'oid', cell: (issue: Issue) => `${issue.oid}`},
     {columnDef: 'name', header: 'Name', cell: (issue: Issue) => `${issue.name}`},
-    {columnDef: 'description', header: 'description', cell: (issue: Issue) => `${issue.description}`},
-    {columnDef: 'solutionDescription', header: 'solutionDescription', cell: (issue: Issue) => `${issue.solutionDescription}` }
+    {columnDef: 'description', header: 'Description', cell: (issue: Issue) => `${issue.description}`},
+    {columnDef: 'solutionDescription', header: 'SolutionDescription', cell: (issue: Issue) => `${issue.solutionDescription}` }
   ];
   // @formatter:on
   displayedColumns = this.columns.map(c => c.columnDef);
