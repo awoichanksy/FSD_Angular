@@ -3,6 +3,8 @@ import {Issue} from './Issue';
 import {MatTableDataSource} from "@angular/material";
 import {IssuesService} from './issues.service'
 import {UnifiedTableComponent} from "../unified-table/unified-table.component";
+import {ColumnDefinition} from "../unified-table/ColumnDefenition";
+
 
 @Component({
   selector: 'app-issues',
@@ -13,16 +15,13 @@ import {UnifiedTableComponent} from "../unified-table/unified-table.component";
 
 
 export class IssuesComponent implements OnInit {
-  // @formatter:off
-  //TODO: extract interface, so that unified table can use it
+
   columns = [
-    {columnDef: 'oid', header: 'oid', cell: (issue: Issue) => `${issue.oid}`},
-    {columnDef: 'name', header: 'Name', cell: (issue: Issue) => `${issue.name}`},
-    {columnDef: 'description', header: 'Description', cell: (issue: Issue) => `${issue.description}`},
-    {columnDef: 'solutionDescription', header: 'SolutionDescription', cell: (issue: Issue) => `${issue.solutionDescription}` }
+    new ColumnDefinition("name", "Name", (issue: Issue) => issue.name),
+    new ColumnDefinition("description", "Description", (issue: Issue) => issue.description),
+    new ColumnDefinition("solutionDescription", "SolutionDescription", (issue: Issue) => issue.solutionDescription)
   ];
-  // @formatter:on
-  displayedColumns = this.columns.map(c => c.columnDef);
+
   private dataSource: MatTableDataSource<Issue>;
   optionSizes: number[] = [2, 5, 10, 15, 20];
 
