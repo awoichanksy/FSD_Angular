@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort} from "@angular/material";
+import {ColumnDefinition} from "./ColumnDefenition";
 
 
 @Component({
@@ -9,12 +10,12 @@ import {MatPaginator, MatSort} from "@angular/material";
 })
 
 export class UnifiedTableComponent implements OnChanges {
-  @Input() displayedColumns: any[];
-  @Input() columns: any[];
+  @Input() columns: ColumnDefinition<any>[];
   @Input() dataSource: any;
   @Input() optionSizes: number[] = [5, 10, 20];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: any[];
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -25,6 +26,7 @@ export class UnifiedTableComponent implements OnChanges {
     if (changes.dataSource.currentValue != null) {
       changes.dataSource.currentValue.paginator = this.paginator;
       changes.dataSource.currentValue.sort = this.sort;
+      this.displayedColumns = this.columns.map(c => c.columnID);
     }
   }
 }
