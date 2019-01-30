@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {IssuesComponent} from './issues/issues.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule, MatPaginatorModule, MatSidenavModule, MatSortModule, MatTableModule} from '@angular/material';
@@ -12,7 +11,9 @@ import {MyMessageService} from './my-message.service';
 import {UnifiedTableComponent} from './unified-table/unified-table.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
+import {IssuesComponent} from './issues/issues.component';
 import {DevicesComponent} from './devices/devices.component';
+import {SolversComponent} from './solvers/solvers.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {DevicesComponent} from './devices/devices.component';
     AppComponent,
     IssuesComponent,
     UnifiedTableComponent,
-    DevicesComponent
+    DevicesComponent,
+    SolversComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import {DevicesComponent} from './devices/devices.component';
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
     AppRoutingModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   exports: [
     MatTableModule, FormsModule, ReactiveFormsModule, MatInputModule, MatSortModule, MatSidenavModule

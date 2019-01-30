@@ -15,7 +15,7 @@ const httpOptions = {
 
 @Injectable()
 export class DevicesService {
-  DevicesUrl = 'http://localhost:8080/devices';  // URL to web api
+  devicesUrl = 'http://localhost:8080/devices';  // URL to web api
   private readonly handleError: HandleError;
 
   constructor(
@@ -26,7 +26,7 @@ export class DevicesService {
 
   /** GET heroes from the server */
   getDevices(): Observable<Device[]> {
-    return this.http.get<Device[]>(this.DevicesUrl)
+    return this.http.get<Device[]>(this.devicesUrl)
       .pipe(
         catchError(this.handleError('getDevices', []))
       );
