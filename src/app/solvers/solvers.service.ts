@@ -2,8 +2,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
-import {Issue} from "./Issue";
-import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
+import {Solver} from "./Solver";
+import {HttpErrorHandler, HandleError} from '../http-error-handler.service';
 
 
 const httpOptions = {
@@ -14,20 +14,20 @@ const httpOptions = {
 };
 
 @Injectable()
-export class IssuesService {
-  issuesUrl = 'http://localhost:8080/issues';  // URL to web api
+export class SolversService {
+  solversUrl = 'http://localhost:8080/solvers';  // URL to web api
   private handleError: HandleError;
 
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
-    this.handleError = httpErrorHandler.createHandleError('IssuesService');
+    this.handleError = httpErrorHandler.createHandleError('SolversService');
   }
 
-  getIssues(): Observable<Issue[]> {
-    return this.http.get<Issue[]>(this.issuesUrl)
+  getSolvers(): Observable<Solver[]> {
+    return this.http.get<Solver[]>(this.solversUrl)
       .pipe(
-        catchError(this.handleError('getIssues', []))
+        catchError(this.handleError('getSolvers', []))
       );
   }
 
