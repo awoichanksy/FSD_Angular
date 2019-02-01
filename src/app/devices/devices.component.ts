@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from "@angular/material";
 import {Device} from "./Device";
 import {DevicesService} from "./devices.service";
 import {UnifiedTableComponent} from "../unified-table/unified-table.component";
@@ -21,7 +20,7 @@ export class DevicesComponent implements OnInit {
     new ColumnDefinition("Location", "Location", (device: Device) => device.location)
   ];
 
-  private dataSource: MatTableDataSource<Device>;
+  private dataSource: Device[];
   optionSizes: number[] = [2, 5, 10, 15, 20];
 
   constructor(private deviceService: DevicesService) {
@@ -37,7 +36,7 @@ export class DevicesComponent implements OnInit {
       .subscribe(devicesArray => this.assignDataToDataSource(devicesArray));
   }
 
-  private assignDataToDataSource(devicesArray) {
-    this.dataSource = new MatTableDataSource<Device>(devicesArray);
+  private assignDataToDataSource(devicesArray: Device[]) {
+    this.dataSource = devicesArray;
   }
 }

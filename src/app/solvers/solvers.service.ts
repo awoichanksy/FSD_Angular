@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {Solver} from "./Solver";
-import {HttpErrorHandler, HandleError} from '../http-error-handler.service';
+import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 
 const httpOptions = {
