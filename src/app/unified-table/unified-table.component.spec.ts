@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UnifiedTableComponent } from './unified-table.component';
+import {UnifiedTableComponent} from './unified-table.component';
 
 describe('UnifiedTableComponent', () => {
   let component: UnifiedTableComponent;

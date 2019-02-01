@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ColumnDefinition} from "../unified-table/ColumnDefenition";
 import {Issue} from "../issues/Issue";
 import {UnifiedTableComponent} from "../unified-table/unified-table.component";
-import {MatTableDataSource} from "@angular/material";
 import {SolversService} from "./solvers.service";
 import {Solver} from "./Solver";
 
@@ -18,7 +17,7 @@ export class SolversComponent implements OnInit {
     new ColumnDefinition("name", "Name", (issue: Issue) => issue.name),
   ];
 
-  private dataSource: MatTableDataSource<Solver>;
+  private dataSource: Solver[];
   optionSizes: number[] = [2, 5, 10, 15, 20];
 
   constructor(private solversService: SolversService) {
@@ -33,8 +32,8 @@ export class SolversComponent implements OnInit {
       .subscribe(solverArray => this.assignDataToDataSource(solverArray));
   }
 
-  private assignDataToDataSource(solverArray) {
-    this.dataSource = new MatTableDataSource<Solver>(solverArray);
+  private assignDataToDataSource(solverArray: Solver[]) {
+    this.dataSource = solverArray;
   }
 
 }
