@@ -1,4 +1,5 @@
-export interface Solver {
-  oid: string;
+import {DataObjectClass} from "../dataobject/DataObjectClass";
+
+export class Solver extends DataObjectClass {
   name: string;
 }
