@@ -16,6 +16,7 @@ const httpOptions = {
 @Injectable()
 export class IssuesService {
   issuesUrl = 'http://localhost:8080/issues';  // URL to web api
+  issuesUrlAterUpdateTime = 'http://localhost:8080/issues/updatetime?updatetime=';
   private handleError: HandleError;
 
   constructor(
@@ -32,4 +33,12 @@ export class IssuesService {
   }
 
 
+  getIssuesAfterUpdateTime(lastPollTime: Date): Observable<Issue[]> {
+    let isoDate = new Date(lastPollTime.getTime() - (lastPollTime.getTimezoneOffset() * 60000)).toISOString();
+    let issuesUrlWithTime = this.issuesUrlAterUpdateTime + isoDate;
+    return this.http.get<Issue[]>(issuesUrlWithTime)
+      .pipe(
+        catchError(this.handleError('getIssues', []))
+      );
+  }
 }

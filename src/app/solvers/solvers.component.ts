@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ColumnDefinition} from "../unified-table/ColumnDefenition";
-import {Issue} from "../issues/Issue";
 import {UnifiedTableComponent} from "../unified-table/unified-table.component";
 import {SolversService} from "./solvers.service";
+import * as Collections from "typescript-collections";
 import {Solver} from "./Solver";
 
 @Component({
@@ -14,11 +14,13 @@ import {Solver} from "./Solver";
 export class SolversComponent implements OnInit {
 
   columns = [
-    new ColumnDefinition("name", "Name", (issue: Issue) => issue.name),
+    new ColumnDefinition("name", "Name", (solver: Solver) => solver.name),
+    new ColumnDefinition("updateTimestamp", "LastUpdated", (solver: Solver) => solver.updateTimestamp)
   ];
 
-  private dataSource: Solver[];
-  optionSizes: number[] = [2, 5, 10, 15, 20];
+  private dataSource: Collections.Set<Solver>;
+  private optionSizes: number[] = [5, 10, 15, 20];
+  private addedObject: Collections.Set<Solver>;
 
   constructor(private solversService: SolversService) {
   }
@@ -32,8 +34,28 @@ export class SolversComponent implements OnInit {
       .subscribe(solverArray => this.assignDataToDataSource(solverArray));
   }
 
-  private assignDataToDataSource(solverArray: Solver[]) {
-    this.dataSource = solverArray;
+  private assignDataToDataSource(solversArray: Solver[]) {
+    this.dataSource = new Collections.Set<Solver>();
+    this.putDataIntoCollection(solversArray, this.dataSource);
   }
 
+  private putDataIntoCollection(solversArray: Solver[], dataCollection: Collections.Set<Solver>) {
+    if (solversArray != null && solversArray.length > 0) {
+      solversArray.forEach(solver => {
+        let solverWithType = Object.assign(new Solver(), solver);
+        return dataCollection.add(solverWithType);
+      });
+    }
+  }
+
+  addNewSolver() {
+    const solver: Solver =
+      {
+        name: 'get groceries',
+        oid: 'eggs, milk, etc.',
+        updateTimestamp: new Date()
+      };
+    this.addedObject = new Collections.Set<Solver>();
+    this.addedObject.add(solver);
+  }
 }
