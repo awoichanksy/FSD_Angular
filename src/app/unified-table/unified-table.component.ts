@@ -4,12 +4,31 @@ import {ColumnDefinition} from "./ColumnDefenition";
 import {MatSortable} from "@angular/material/typings/sort";
 import * as Collections from "typescript-collections";
 import {DataObjectClass} from "../dataobject/DataObjectClass";
+import {animate, sequence, style, transition, trigger,} from '@angular/animations';
+
+
+const rowsAnimation =
+  trigger('rowsAnimation', [
+    transition('void => *', [
+      style({
+        opacity: 0.5,
+        backgroundColor: 'green'
+      }),
+      sequence([
+        animate("1s ease", style({
+          opacity: 1,
+          backgroundColor: '*'
+        })),
+      ])
+    ])
+  ]);
 
 
 @Component({
   selector: 'app-unified-table',
   templateUrl: './unified-table.component.html',
-  styleUrls: ['./unified-table.component.css']
+  styleUrls: ['./unified-table.component.css'],
+  animations: [rowsAnimation]
 })
 
 export class UnifiedTableComponent implements OnInit, OnChanges {
@@ -51,7 +70,5 @@ export class UnifiedTableComponent implements OnInit, OnChanges {
         this.dataSource.paginator = this.paginator;
       }
     }
-
-
   }
 }
