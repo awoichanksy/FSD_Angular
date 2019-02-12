@@ -10,12 +10,12 @@
 
 .mat-drawer {
   min-width: 150px;
+  background-color: #ccc;
 }
 
 
 .mat-nav-item {
   min-height: 48px;
-  border-top: 1px white solid;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
@@ -24,20 +24,22 @@
   justify-content: center;
 }
 
-.mat-drawer {
-  padding-top: 10px;
-}
-
-.mat-nav-item:last-child {
-  border-bottom: 1px white solid;
-
-}
 
 .page-header {
-  padding-left: 150px;
   border-bottom: 1px white solid;
+  background-color: #666;
+  text-align: center;
 }
 
 .page-header h1 {
   padding-left: 30px;
 }
+
+.page-footer {
+  flex: 0 1 40px;
+  border-top: 1px white solid;
+  background-color: #666;
+  text-align: center;
+}
+
+
