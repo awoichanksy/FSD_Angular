@@ -37,7 +37,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
 
   constructor(private issuesService: IssuesService) {
     this.alive = true;
-    this.interval = 1000;
+    this.interval = 2000;
     if (this.alive) {
       this.createPollTimer();
     }
