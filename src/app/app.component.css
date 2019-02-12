@@ -1,13 +1,11 @@
 .whole-page-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
 .center-container {
-  height: 100%;
+  flex: 1 1 auto;
 }
 
 .mat-drawer {
@@ -40,6 +38,6 @@
   border-bottom: 1px white solid;
 }
 
-.page-header h1{
+.page-header h1 {
   padding-left: 30px;
 }
