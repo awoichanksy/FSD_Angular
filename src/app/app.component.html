@@ -1,10 +1,10 @@
-<div class="whole-page-container mat-app-background">
+<div class="whole-page-container">
   <div class="page-header">
     <h1>Issues Management System</h1>
   </div>
 
   <mat-sidenav-container class="center-container">
-    <mat-sidenav opened mode="side">
+    <mat-sidenav opened mode="side" class="">
       <div class="mat-nav-item">
         <a routerLink="/issues" routerLinkActive="active">Issues</a>
       </div>
@@ -17,4 +17,8 @@
     </mat-sidenav>
     <router-outlet></router-outlet>
   </mat-sidenav-container>
+
+  <div class="page-footer">
+    <h4>footer</h4>
+  </div>
 </div>
