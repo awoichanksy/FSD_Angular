@@ -5,5 +5,37 @@
 /*@import "../node_modules/@angular/material/prebuilt-themes/purple-green.css";*/
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.horizontal-layout > *:last-child {
+  margin-right: 30px !important;
+}
+
+.horizontal-layout * {
+  margin-left: 30px !important;
+}
+
+
+.vertical-layout > *:last-child {
+  margin-bottom: 30px !important;
+}
+
+.vertical-layout * {
+  margin-top: 30px !important;
+}
+
+
+.basic-container {
+  padding: 30px;
+}
+
+.level-1-component h2 {
+  padding-left: 30px;
+}
