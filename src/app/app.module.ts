@@ -4,7 +4,14 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import {MatInputModule, MatPaginatorModule, MatSidenavModule, MatSortModule, MatTableModule} from '@angular/material';
+import {
+  MatDialogModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSidenavModule,
+  MatSortModule,
+  MatTableModule,
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {HttpErrorHandler} from './http-error-handler.service';
 import {MyMessageService} from './my-message.service';
@@ -14,6 +21,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {IssuesComponent} from './issues/issues.component';
 import {DevicesComponent} from './devices/devices.component';
 import {SolversComponent} from './solvers/solvers.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {DialogComponent} from './dialog/dialog.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -22,7 +32,8 @@ import {SolversComponent} from './solvers/solvers.component';
     IssuesComponent,
     UnifiedTableComponent,
     DevicesComponent,
-    SolversComponent
+    SolversComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,12 +43,14 @@ import {SolversComponent} from './solvers/solvers.component';
     FormsModule, ReactiveFormsModule,
     AppRoutingModule,
     MatSidenavModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatCheckboxModule,
   ],
-  exports: [
-    MatTableModule, FormsModule, ReactiveFormsModule, MatInputModule, MatSortModule, MatSidenavModule
-  ],
+  exports: [],
   providers: [HttpErrorHandler, MyMessageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule {
 }

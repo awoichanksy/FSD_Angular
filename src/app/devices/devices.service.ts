@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -6,16 +6,9 @@ import {Device} from "./Device";
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
 @Injectable()
 export class DevicesService {
-  devicesUrl = 'http://localhost:8080/devices';  // URL to web api
+  devicesUrl = 'http://localhost:8080/devices';
   private readonly handleError: HandleError;
 
   constructor(
