@@ -4,6 +4,10 @@ import {UnifiedTableComponent} from "../unified-table/unified-table.component";
 import {SolversService} from "./solvers.service";
 import * as Collections from "typescript-collections";
 import {Solver} from "./Solver";
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {DialogComponent} from "../dialog/dialog.component";
+import {Observable} from "rxjs";
+
 
 @Component({
   selector: 'app-solvers',
@@ -15,14 +19,15 @@ export class SolversComponent implements OnInit {
 
   columns = [
     new ColumnDefinition("name", "Name", (solver: Solver) => solver.name),
+    new ColumnDefinition("active", "Active", (solver: Solver) => solver.active),
     new ColumnDefinition("updateTimestamp", "LastUpdated", (solver: Solver) => solver.updateTimestamp)
   ];
 
   private dataSource: Collections.Set<Solver>;
-  private optionSizes: number[] = [5, 10, 15, 20];
-  private addedObject: Collections.Set<Solver>;
+  optionSizes: number[] = [5, 10, 15, 20];
+  private newOrUpdatedObjects: Collections.Set<Solver>;
 
-  constructor(private solversService: SolversService) {
+  constructor(private solversService: SolversService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -48,14 +53,38 @@ export class SolversComponent implements OnInit {
     }
   }
 
+  private static putSingleObjectIntoCollection(solver, dataCollection: Collections.Set<Solver>) {
+    if (solver != null) {
+      let solverWithType = Object.assign(new Solver(), solver);
+      dataCollection.add(solverWithType);
+    }
+  }
+
   addNewSolver() {
-    const solver: Solver =
-      {
-        name: 'get groceries',
-        oid: 'eggs, milk, etc.',
-        updateTimestamp: new Date()
-      };
-    this.addedObject = new Collections.Set<Solver>();
-    this.addedObject.add(solver);
+    this.openAddNewSolverDialog();
+  }
+
+
+  openAddNewSolverDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      dialogTitle: 'Add new Solver'
+    };
+
+    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      solver => {
+        if (solver != null) {
+          let solverWithType = Object.assign(new Solver(), solver);
+          let result: Observable<Solver[]> = this.solversService.addNewSolver(solverWithType);
+          result.subscribe(solver => {
+            this.newOrUpdatedObjects = new Collections.Set<Solver>();
+            SolversComponent.putSingleObjectIntoCollection(solver, this.newOrUpdatedObjects);
+          });
+        }
+      }
+    )
   }
 }

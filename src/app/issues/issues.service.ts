@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -6,17 +6,10 @@ import {Issue} from "./Issue";
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
 @Injectable()
 export class IssuesService {
-  issuesUrl = 'http://localhost:8080/issues';  // URL to web api
-  issuesUrlAterUpdateTime = 'http://localhost:8080/issues/updatetime?updatetime=';
+  issuesUrl = 'http://localhost:8080/issues';
+  issuesUrlAfterUpdateTime = 'http://localhost:8080/issues/updatetime?updatetime=';
   private handleError: HandleError;
 
   constructor(
@@ -35,7 +28,7 @@ export class IssuesService {
 
   getIssuesAfterUpdateTime(lastPollTime: Date): Observable<Issue[]> {
     let isoDate = new Date(lastPollTime.getTime() - (lastPollTime.getTimezoneOffset() * 60000)).toISOString();
-    let issuesUrlWithTime = this.issuesUrlAterUpdateTime + isoDate;
+    let issuesUrlWithTime = this.issuesUrlAfterUpdateTime + isoDate;
     return this.http.get<Issue[]>(issuesUrlWithTime)
       .pipe(
         catchError(this.handleError('getIssues', []))

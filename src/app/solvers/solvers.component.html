@@ -1,13 +1,13 @@
 <div class="level-1-component">
   <h2>All Solvers</h2>
-
-  <button (click)=addNewSolver()>Add Solver</button>
-
+  <div class="basic-container horizontal-layout">
+    <button class="mat-raised-button mat-stroked-button" (click)=addNewSolver()>Add Solver</button>
+  </div>
   <div class="mat-app-background basic-container">
     <app-unified-table [columns]=columns
                        [dataArray]=dataSource
                        [optionSizes]=optionSizes
-                       [newOrUpdatedItems]=addedObject
+                       [newOrUpdatedItems]=newOrUpdatedObjects
     >
     </app-unified-table>
   </div>

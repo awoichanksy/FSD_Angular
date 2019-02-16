@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -6,17 +6,11 @@ import {Solver} from "./Solver";
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
 @Injectable()
 export class SolversService {
   solversUrl = 'http://localhost:8080/solvers';  // URL to web api
-  private handleError: HandleError;
+  solvers_add_url = 'http://localhost:8080/solver/add';  // URL to web api
+  private readonly handleError: HandleError;
 
   constructor(
     private http: HttpClient,
@@ -26,6 +20,16 @@ export class SolversService {
 
   getSolvers(): Observable<Solver[]> {
     return this.http.get<Solver[]>(this.solversUrl)
+      .pipe(
+        catchError(this.handleError('getSolvers', []))
+      );
+  }
+
+  addNewSolver(solver: Solver): Observable<Solver[]> {
+    const name = solver.name;
+    const active = solver.active.toString();
+    const url: string = this.solvers_add_url + `?name=${name}&active=${active}`;
+    return this.http.get<Solver[]>(url)
       .pipe(
         catchError(this.handleError('getSolvers', []))
       );
