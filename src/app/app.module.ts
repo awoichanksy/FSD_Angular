@@ -24,7 +24,7 @@ import {SolversComponent} from './solvers/solvers.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {DialogComponent} from './dialog/dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {DynamicFormComponent} from "./unified-form/dynamic-form.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     UnifiedTableComponent,
     DevicesComponent,
     SolversComponent,
-    DialogComponent
+    DialogComponent,
+    DynamicFormComponent,
   ],
   imports: [
     BrowserModule,

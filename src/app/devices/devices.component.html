@@ -1,9 +1,13 @@
 <div class="level-1-component">
   <h2>All Devices</h2>
+  <div class="basic-container horizontal-layout">
+    <button class="mat-raised-button mat-stroked-button" (click)=addNewDevice()>Add Device</button>
+  </div>
   <div class="mat-app-background basic-container">
     <app-unified-table [columns]=columns
                        [dataArray]=dataSource
                        [optionSizes]=optionSizes
+                       [newOrUpdatedItems]=newOrUpdatedObjects
     >
     </app-unified-table>
   </div>

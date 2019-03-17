@@ -1,41 +1,40 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
+import {DataControlService} from "../unified-form/data-control.service";
+import {ControlBase} from "../unified-form/databound-field";
 
 @Component({
   selector: 'app-dialog-component',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  styleUrls: ['./dialog.component.css'],
+  providers: [DataControlService]
 })
 export class DialogComponent implements OnInit {
 
-  form: FormGroup;
   dialogTitle: string;
+
+  formFields: ControlBase<any>[];
 
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<DialogComponent>,
               @Inject(MAT_DIALOG_DATA) {
-                dialogTitle
+                dialogTitle,
+                fields
               }) {
-
     this.dialogTitle = dialogTitle;
-
-    this.form = fb.group({
-      name: ["", Validators.required],
-      active: [""],
-    });
-
+    this.formFields = fields;
   }
 
   ngOnInit() {
 
   }
 
-  save() {
-    this.dialogRef.close(this.form.value);
+  save(event: any) {
+    this.dialogRef.close(event);
   }
 
-  close() {
-    this.dialogRef.close();
+  cancel($event: any) {
+    this.dialogRef.close(null);
   }
 }

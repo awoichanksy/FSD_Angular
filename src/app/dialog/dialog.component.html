@@ -1,19 +1,7 @@
-<h2 mat-dialog-title>{{dialogTitle}}</h2>
-<mat-dialog-content [formGroup]="form">
-  <mat-form-field>
-    <input matInput
-           placeholder="Solver Name"
-           formControlName="name">
-  </mat-form-field>
-  <mat-checkbox type="checkbox" formControlName="active">Active</mat-checkbox>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button class="mat-raised-button"
-          (click)="close()">
-    Close
-  </button>
-  <button class="mat-raised-button mat-primary"
-          (click)="save()"
-          [disabled]="!form.valid"> Save
-  </button>
-</mat-dialog-actions>
+<div>
+  <h2>{{dialogTitle}}</h2>
+  <app-dynamic-form [formFields]="formFields"
+                    (valueChange)='save($event)'
+                    (abortEvent)='cancel($event)'
+                    abortButtonCaption="Cancel"></app-dynamic-form>
+</div>
