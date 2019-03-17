@@ -7,6 +7,8 @@ import {Solver} from "./Solver";
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DialogComponent} from "../dialog/dialog.component";
 import {Observable} from "rxjs";
+import {ControlBase} from "../unified-form/databound-field";
+import {SolverFormFields} from "./sovler.form-fields";
 
 
 @Component({
@@ -66,11 +68,15 @@ export class SolversComponent implements OnInit {
 
 
   openAddNewSolverDialog() {
+    let fields: ControlBase<any>[] = SolverFormFields.getSolverFormFields();
+
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      dialogTitle: 'Add new Solver'
+      dialogTitle: 'Add new Solver',
+      fields: fields
     };
 
     const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
