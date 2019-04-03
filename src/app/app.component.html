@@ -1,24 +1,22 @@
-<div class="whole-page-container">
-  <div class="page-header">
-    <h1>Issues Management System</h1>
-  </div>
+<div class="container">
+  <header><h1>Issues Management System</h1></header>
 
-  <mat-sidenav-container class="center-container">
-    <mat-sidenav opened mode="side" class="">
+  <mat-sidenav-container class="center">
+    <mat-sidenav opened mode="side" class="nav">
       <div class="mat-nav-item">
-        <a routerLink="/issues" routerLinkActive="active">Issues</a>
+        <a routerLink="/issues" routerLinkActive="active" class="hvr-underline-from-center">Issues</a>
       </div>
-      <div class="mat-nav-item">
-        <a routerLink="/devices" routerLinkActive="active">Devices</a>
+      <div class="mat-nav-item ">
+        <a routerLink="/devices" routerLinkActive="active" class="hvr-underline-from-center">Devices</a>
       </div>
-      <div class="mat-nav-item">
-        <a routerLink="/solvers" routerLinkActive="active">Solvers</a>
+      <div class="mat-nav-item ">
+        <a routerLink="/solvers" routerLinkActive="active" class="hvr-underline-from-center">Solvers</a>
       </div>
     </mat-sidenav>
-    <router-outlet></router-outlet>
+    <div class="body">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-container>
 
-  <div class="page-footer">
-    <h4>footer</h4>
-  </div>
+  <footer><h3>Footer</h3></footer>
 </div>

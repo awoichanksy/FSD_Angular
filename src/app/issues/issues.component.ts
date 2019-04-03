@@ -32,7 +32,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
   private interval: number;
   private lastPollTime: Date = new Date();
   private alive: boolean; // used to unsubscribe from the TimerObservable  when OnDestroy is called.
-  optionSizes: number[] = [5, 10, 15, 20];
+  optionSizes: number[] = [ 30, 5, 10, 15];
 
 
   constructor(private issuesService: IssuesService) {
