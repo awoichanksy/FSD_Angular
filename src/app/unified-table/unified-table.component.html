@@ -1,17 +1,16 @@
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
-
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8"
+     style="height: 100%; max-height: 400px; min-height: 200px; border: solid blue; overflow: scroll">
   <table mat-table [dataSource]=dataSource matSort>
     <!-- Generic column definition -->
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnID">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }} </mat-header-cell>
-      <mat-cell *matCellDef="let rowObject">{{ column.cellValue(rowObject) }}</mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }} </th>
+      <td mat-cell *matCellDef="let rowObject">{{ column.cellValue(rowObject) }}</td>
     </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row [@rowsAnimation]="" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row [@rowsAnimation]="" *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
-  <mat-paginator [pageSizeOptions]=optionSizes showFirstLastButtons></mat-paginator>
 </div>
+<mat-paginator [pageSizeOptions]=optionSizes showFirstLastButtons></mat-paginator>

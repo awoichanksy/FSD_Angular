@@ -43,7 +43,11 @@ export class UnifiedTableComponent implements OnInit, OnChanges {
   displayedColumns: any[];
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
   }
 
   ngOnInit(): void {
