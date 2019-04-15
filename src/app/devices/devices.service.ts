@@ -1,4 +1,4 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -27,11 +27,17 @@ export class DevicesService {
 
 
   addNewDevice(device: Device): Observable<Device[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      })
+    };
+
     const name = device.name;
     const description = device.description.toString();
     const location = device.location.toString();
     const url: string = this.devicesAddUrl + `?name=${name}&description=${description}&location=${location}`;
-    return this.http.get<Device[]>(url)
+    return this.http.post<Device[]>(url, device, httpOptions)
       .pipe(
         catchError(this.handleError('getDevices', []))
       );
