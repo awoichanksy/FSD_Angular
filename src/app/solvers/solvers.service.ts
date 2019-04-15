@@ -1,4 +1,4 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -26,14 +26,17 @@ export class SolversService {
   }
 
   addNewSolver(solver: Solver): Observable<Solver[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      })
+    };
     const name = solver.name;
     const active = solver.active.toString();
     const url: string = this.solvers_add_url + `?name=${name}&active=${active}`;
-    return this.http.get<Solver[]>(url)
+    return this.http.post<Solver[]>(url, solver, httpOptions)
       .pipe(
-        catchError(this.handleError('getSolvers', []))
+        catchError(this.handleError('addNewSolver', []))
       );
   }
-
-
 }
