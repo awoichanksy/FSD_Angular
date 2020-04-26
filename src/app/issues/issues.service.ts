@@ -1,8 +1,8 @@
-import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {catchError} from "rxjs/operators";
-import {Issue} from "./Issue";
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {Issue} from './Issue';
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 
@@ -27,8 +27,8 @@ export class IssuesService {
 
 
   getIssuesAfterUpdateTime(lastPollTime: Date): Observable<Issue[]> {
-    let isoDate = new Date(lastPollTime.getTime() - (lastPollTime.getTimezoneOffset() * 60000)).toISOString();
-    let issuesUrlWithTime = this.issuesUrlAfterUpdateTime + isoDate;
+    const isoDate = new Date(lastPollTime.getTime() - (lastPollTime.getTimezoneOffset() * 60000)).toISOString();
+    const issuesUrlWithTime = this.issuesUrlAfterUpdateTime + isoDate;
     return this.http.get<Issue[]>(issuesUrlWithTime)
       .pipe(
         catchError(this.handleError('getIssues', []))

@@ -1,8 +1,8 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {catchError} from "rxjs/operators";
-import {Solver} from "./Solver";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {Solver} from './Solver';
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 
