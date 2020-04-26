@@ -1,11 +1,11 @@
-import {ControlBase} from "../unified-form/databound-field";
-import {TextBoxBound} from "../unified-form/databound-textfield";
+import {ControlBase} from '../unified-form/databound-field';
+import {TextBoxBound} from '../unified-form/databound-textfield';
 
 
 export class DeviceFormFields {
   static getDeviceFormFields(): ControlBase<any> [] {
 
-    let fields: ControlBase<any>[] = [new TextBoxBound
+    const fields: ControlBase<any>[] = [new TextBoxBound
     ({
       key: 'name',
       label: 'Device Name',
