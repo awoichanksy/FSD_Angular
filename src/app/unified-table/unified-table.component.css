@@ -18,3 +18,8 @@ table {
 mat-row {
   min-height: 32px;
 }
+
+.paginator {
+  display: flex;
+  justify-content: space-between;
+}

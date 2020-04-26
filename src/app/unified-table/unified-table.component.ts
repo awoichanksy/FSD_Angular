@@ -1,9 +1,10 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
-import {ColumnDefinition} from "./ColumnDefenition";
-import {MatSortable} from "@angular/material/typings/sort";
-import * as Collections from "typescript-collections";
-import {DataObjectClass} from "../dataobject/DataObjectClass";
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {ColumnDefinition} from './ColumnDefenition';
+import {MatSortable} from '@angular/material/typings/sort';
+import {SelectionModel} from '@angular/cdk/collections';
+import * as Collections from 'typescript-collections';
+import {DataObjectClass} from '../dataobject/DataObjectClass';
 import {animate, sequence, style, transition, trigger,} from '@angular/animations';
 
 
@@ -15,7 +16,7 @@ const rowsAnimation =
         backgroundColor: 'green'
       }),
       sequence([
-        animate("1s ease", style({
+        animate('1s ease', style({
           opacity: 1,
           backgroundColor: '*'
         })),
@@ -34,6 +35,7 @@ const rowsAnimation =
 export class UnifiedTableComponent implements OnInit, OnChanges {
 
   @Input() columns: ColumnDefinition<any>[];
+  @Input() selection: SelectionModel<DataObjectClass>;
   @Input() dataArray: Collections.Set<DataObjectClass>;
   @Input() newOrUpdatedItems: Collections.Set<DataObjectClass>;
   @Input() optionSizes: number[] = [5, 10, 20];
@@ -47,15 +49,46 @@ export class UnifiedTableComponent implements OnInit, OnChanges {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
 
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.displayedColumns = this.columns.map(c => c.columnID);
+    this.columns.push(new ColumnDefinition('selectorColumn', '-', (row: DataObjectClass) => row.oid));
+    this.displayedColumns = this.columns
+      .sort(this.selectorColumnFirst())
+      .map(c => c.columnID);
     this.sort.sort(<MatSortable>({id: 'updateTimestamp', start: 'desc'}));
 
+    const initialSelection = [];
+    const allowMultiSelect = true;
+    this.selection = new SelectionModel<DataObjectClass>(allowMultiSelect, initialSelection);
+
+
+  }
+
+  private selectorColumnFirst() {
+    return (a, b) => {
+      if (a.columnID === 'selectorColumn') {
+        return -1;
+      } else {
+        return 0;
+      }
+    };
   }
 
   ngOnChanges(changes: SimpleChanges): void {

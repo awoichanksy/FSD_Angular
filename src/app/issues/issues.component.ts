@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Issue} from './Issue';
-import {IssuesService} from './issues.service'
-import {UnifiedTableComponent} from "../unified-table/unified-table.component";
-import {ColumnDefinition} from "../unified-table/ColumnDefenition";
-import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {IssuesService} from './issues.service';
+import {UnifiedTableComponent} from '../unified-table/unified-table.component';
+import {ColumnDefinition} from '../unified-table/ColumnDefenition';
+import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import 'rxjs/add/operator/takeWhile';
-import * as Collections from "typescript-collections";
-import {DataObjectClass} from "../dataobject/DataObjectClass";
+import * as Collections from 'typescript-collections';
+import {DataObjectClass} from '../dataobject/DataObjectClass';
 
 
 @Component({
@@ -20,10 +20,10 @@ import {DataObjectClass} from "../dataobject/DataObjectClass";
 export class IssuesComponent implements OnInit, OnDestroy {
 
   columns = [
-    new ColumnDefinition("name", "Name", (issue: Issue) => issue.name),
-    new ColumnDefinition("description", "Description", (issue: Issue) => issue.description),
-    new ColumnDefinition("solutionDescription", "SolutionDescription", (issue: Issue) => issue.solutionDescription),
-    new ColumnDefinition("updateTimestamp", "LastUpdated", (issue: Issue) => issue.updateTimestamp)
+    new ColumnDefinition('name', 'Name', (issue: Issue) => issue.name),
+    new ColumnDefinition('description', 'Description', (issue: Issue) => issue.description),
+    new ColumnDefinition('solutionDescription', 'SolutionDescription', (issue: Issue) => issue.solutionDescription),
+    new ColumnDefinition('updateTimestamp', 'LastUpdated', (issue: Issue) => issue.updateTimestamp)
   ];
 
 
@@ -32,7 +32,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
   private interval: number;
   private lastPollTime: Date = new Date();
   private alive: boolean; // used to unsubscribe from the TimerObservable  when OnDestroy is called.
-  optionSizes: number[] = [ 30, 5, 10, 15];
+  optionSizes: number[] = [30, 5, 10, 15];
 
 
   constructor(private issuesService: IssuesService) {
@@ -82,7 +82,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
   private putDataIntoCollection(issueArray: Issue[], dataCollection: Collections.Set<DataObjectClass>) {
     if (issueArray != null && issueArray.length > 0) {
       issueArray.forEach(issue => {
-        let issueWithType = Object.assign(new Issue(), issue);
+        const issueWithType = Object.assign(new Issue(), issue);
         return dataCollection.add(issueWithType);
       });
     }
