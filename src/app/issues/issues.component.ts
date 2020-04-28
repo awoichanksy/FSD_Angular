@@ -7,6 +7,7 @@ import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import 'rxjs/add/operator/takeWhile';
 import * as Collections from 'typescript-collections';
 import {DataObjectClass} from '../dataobject/DataObjectClass';
+import {Solver} from '../solvers/Solver';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class IssuesComponent implements OnInit, OnDestroy {
   private interval: number;
   private lastPollTime: Date = new Date();
   private alive: boolean; // used to unsubscribe from the TimerObservable  when OnDestroy is called.
-  optionSizes: number[] = [30, 5, 10, 15];
+  private optionSizes: number[] = [30, 5, 10, 15];
+  private deletedItems: Collections.Set<Solver>;
 
 
   constructor(private issuesService: IssuesService) {

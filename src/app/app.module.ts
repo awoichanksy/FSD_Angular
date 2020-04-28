@@ -28,6 +28,7 @@ import {DynamicFormComponent} from './unified-form/dynamic-form.component';
     DevicesComponent,
     SolversComponent,
     DialogComponent,
+    DialogSimpleComponent,
     DynamicFormComponent,
   ],
   imports: [
@@ -45,7 +46,7 @@ import {DynamicFormComponent} from './unified-form/dynamic-form.component';
   exports: [],
   providers: [HttpErrorHandler, MyMessageService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [DialogComponent, DialogSimpleComponent]
 })
 export class AppModule {
 }
