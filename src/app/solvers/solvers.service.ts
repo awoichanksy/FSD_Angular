@@ -39,4 +39,18 @@ export class SolversService {
         catchError(this.handleError('addNewSolver', []))
       );
   }
+
+  deleteSolver(solver: Solver): Observable<Solver> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      })
+    };
+    const oid = solver.oid;
+    const url: string = this.solvers_delete_url + `?oid=${oid}`;
+    return this.http.delete<Solver>(url, httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteSolver', solver))
+      );
+  }
 }
