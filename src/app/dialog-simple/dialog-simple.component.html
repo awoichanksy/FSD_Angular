@@ -1,0 +1,12 @@
+<div>
+  <h2>{{dialogTitle}}</h2>
+  <ng-container *ngFor="let value of values">
+    <div>
+      {{getDisplayValue(value)}}
+    </div>
+  </ng-container>
+  <div class="horizontal-layout">
+    <button type="button" (click)="submit()">{{submitButtonCaption}}</button>
+    <button type="button" (click)="abort($event)">{{abortButtonCaption}}</button>
+  </div>
+</div>

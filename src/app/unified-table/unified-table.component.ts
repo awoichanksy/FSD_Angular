@@ -98,6 +98,12 @@ export class UnifiedTableComponent<T extends DataObjectClass> implements OnInit,
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes.deletedItems != null && changes.deletedItems.currentValue != null) {
+      this.deletedItems = changes.deletedItems.currentValue;
+      this.dataArray.difference(this.deletedItems);
+      this.dataSource.data = this.dataArray.toArray();
+      this.dataSource.filter = '';
+    }
     if (changes.dataArray != null && changes.dataArray.currentValue != null) {
       this.dataArray = changes.dataArray.currentValue;
       this.dataSource.data = this.dataArray.toArray();
@@ -109,8 +115,9 @@ export class UnifiedTableComponent<T extends DataObjectClass> implements OnInit,
       this.dataSource.data = this.dataArray.toArray();
       this.dataSource.filter = '';
 
-      if (this.newOrUpdatedItems.size() > 0) {
+      if (this.dataArray.size() > 0) {
         this.dataSource.paginator = this.paginator;
+        this.selection.clear();
       }
     }
   }

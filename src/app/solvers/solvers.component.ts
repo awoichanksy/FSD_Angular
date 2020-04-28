@@ -74,6 +74,9 @@ export class SolversComponent implements OnInit {
     this.openAddNewSolverDialog();
   }
 
+  addDeleteSolver() {
+    this.openDeleteSolverDialog();
+  }
 
   openAddNewSolverDialog() {
     const fields: ControlBase<any>[] = SolverFormFields.getSolverFormFields();
@@ -89,14 +92,42 @@ export class SolversComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       solver => {
         if (solver != null) {
-          let solverWithType = Object.assign(new Solver(), solver);
-          let result: Observable<Solver[]> = this.solversService.addNewSolver(solverWithType);
-          result.subscribe(solver => {
+          const solverWithType = Object.assign(new Solver(), solver);
+          const result: Observable<Solver[]> = this.solversService.addNewSolver(solverWithType);
+          result.subscribe(slvr => {
+            // making an new instance triggers the change event on the unified table
             this.newOrUpdatedObjects = new Collections.Set<Solver>();
-            SolversComponent.putSingleObjectIntoCollection(solver, this.newOrUpdatedObjects);
+            SolversComponent.putSingleObjectIntoCollection(slvr, this.newOrUpdatedObjects);
           });
         }
       }
-    )
+    );
+  }
+
+  private openDeleteSolverDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    const displayFunction: (s: Solver) => String = solver => solver.name;
+    dialogConfig.data = {
+      dialogTitle: 'Delete selected Solvers',
+      submitButtonCaption: 'Delete',
+      abortButtonCaption: 'Cancel',
+      values: this.table.selection.selected,
+      displayFunction: displayFunction
+    };
+
+    const dialogRef = this.dialog.open(DialogSimpleComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      solvers => {
+        if (solvers != null) {
+          // making an new instance triggers the change event on the unified table
+          this.deletedItems = new Collections.Set<Solver>();
+          solvers.forEach(solver => {
+            this.deletedItems.add(solver);
+          });
+        }
+      }
+    );
   }
 }
