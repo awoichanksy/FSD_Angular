@@ -5,7 +5,7 @@ import {MatSortable} from '@angular/material/typings/sort';
 import {SelectionModel} from '@angular/cdk/collections';
 import * as Collections from 'typescript-collections';
 import {DataObjectClass} from '../dataobject/DataObjectClass';
-import {animate, sequence, style, transition, trigger,} from '@angular/animations';
+import {animate, sequence, style, transition, trigger} from '@angular/animations';
 
 
 const rowsAnimation =
@@ -25,24 +25,32 @@ const rowsAnimation =
   ]);
 
 
+const selectorColumn = 'selectorColumn';
+
 @Component({
   selector: 'app-unified-table',
   templateUrl: './unified-table.component.html',
   styleUrls: ['./unified-table.component.css'],
-  animations: [rowsAnimation]
+  animations: [rowsAnimation],
+  exportAs: 'unifiedTable'
 })
 
-export class UnifiedTableComponent implements OnInit, OnChanges {
+export class UnifiedTableComponent<T extends DataObjectClass> implements OnInit, OnChanges {
 
   @Input() columns: ColumnDefinition<any>[];
-  @Input() selection: SelectionModel<DataObjectClass>;
-  @Input() dataArray: Collections.Set<DataObjectClass>;
-  @Input() newOrUpdatedItems: Collections.Set<DataObjectClass>;
+  @Input() selection: SelectionModel<T>;
+  @Input() dataArray: Collections.Set<T>;
+  @Input() newOrUpdatedItems: Collections.Set<T>;
+  @Input() deletedItems: Collections.Set<T>;
   @Input() optionSizes: number[] = [5, 10, 20];
   private dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: any[];
+
+  get selectedItems(): SelectionModel<T> {
+    return this.selection;
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.toLowerCase();
@@ -68,7 +76,7 @@ export class UnifiedTableComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.columns.push(new ColumnDefinition('selectorColumn', '-', (row: DataObjectClass) => row.oid));
+    this.columns.push(new ColumnDefinition(selectorColumn, '-', (row: T) => row.oid));
     this.displayedColumns = this.columns
       .sort(this.selectorColumnFirst())
       .map(c => c.columnID);
@@ -76,14 +84,12 @@ export class UnifiedTableComponent implements OnInit, OnChanges {
 
     const initialSelection = [];
     const allowMultiSelect = true;
-    this.selection = new SelectionModel<DataObjectClass>(allowMultiSelect, initialSelection);
-
-
+    this.selection = new SelectionModel<T>(allowMultiSelect, initialSelection);
   }
 
   private selectorColumnFirst() {
     return (a, b) => {
-      if (a.columnID === 'selectorColumn') {
+      if (a.columnID === selectorColumn) {
         return -1;
       } else {
         return 0;

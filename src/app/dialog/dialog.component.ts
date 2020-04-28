@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {FormBuilder} from "@angular/forms";
-import {DataControlService} from "../unified-form/data-control.service";
-import {ControlBase} from "../unified-form/databound-field";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {FormBuilder} from '@angular/forms';
+import {DataControlService} from '../unified-form/data-control.service';
+import {ControlBase} from '../unified-form/databound-field';
 
 @Component({
   selector: 'app-dialog-component',

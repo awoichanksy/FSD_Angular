@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
 import {DataControlService} from './data-control.service';
-import {ControlBase} from "./databound-field";
+import {ControlBase} from './databound-field';
 
 @Component({
   selector: 'app-dynamic-form',
