@@ -26,4 +26,5 @@ git branch --set-upstream-to=origin/feature/dev
 Terminal -> ng serve
 
 ### Debug App
-run `"Angular Application"` in debug
+0. ng serve (application must be running) 
+0. run `"Angular Application"` in debug

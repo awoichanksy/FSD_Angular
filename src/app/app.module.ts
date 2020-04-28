@@ -4,15 +4,8 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import {
-  MatDialogModule,
-  MatInputModule,
-  MatPaginatorModule,
-  MatSidenavModule,
-  MatSortModule,
-  MatTableModule,
-} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {MatDialogModule, MatInputModule, MatPaginatorModule, MatSidenavModule, MatSortModule, MatTableModule,} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpErrorHandler} from './http-error-handler.service';
 import {MyMessageService} from './my-message.service';
 import {UnifiedTableComponent} from './unified-table/unified-table.component';
@@ -23,8 +16,9 @@ import {DevicesComponent} from './devices/devices.component';
 import {SolversComponent} from './solvers/solvers.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {DialogComponent} from './dialog/dialog.component';
+import {DialogSimpleComponent} from './dialog-simple/dialog-simple.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {DynamicFormComponent} from "./unified-form/dynamic-form.component";
+import {DynamicFormComponent} from './unified-form/dynamic-form.component';
 
 @NgModule({
   declarations: [

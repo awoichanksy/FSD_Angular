@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {ControlBase} from "./databound-field";
+import {ControlBase} from './databound-field';
 
 @Injectable()
 export class DataControlService {
@@ -9,7 +9,7 @@ export class DataControlService {
   }
 
   toFormGroup(controls: ControlBase<any>[]) {
-    let group: any = {};
+    const group: any = {};
 
     controls.forEach(control => {
       group[control.key] = control.required ?
