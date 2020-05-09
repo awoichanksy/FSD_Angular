@@ -1,0 +1,19 @@
+<div class="level-1-component">
+  <h2>Simulators</h2>
+  <div class="basic-container horizontal-layout">
+    <button class="mat-raised-button mat-stroked-button" (click)=startSolverSimulator()
+            [disabled]=solverSimulatorActive>Start Solver Simulator
+    </button>
+    <button class="mat-raised-button mat-stroked-button" (click)=stopSolverSimulator()
+            [disabled]=!solverSimulatorActive>Stop Solver Simulator
+    </button>
+  </div>
+  <div class="basic-container horizontal-layout">
+    <button class="mat-raised-button mat-stroked-button" (click)=startDeviceSimulator()
+            [disabled]=deviceSimulatorActive>Start Device Simulator
+    </button>
+    <button class="mat-raised-button mat-stroked-button" (click)=stopDeviceSimulator()
+            [disabled]=!deviceSimulatorActive>Stop Device Simulator
+    </button>
+  </div>
+</div>

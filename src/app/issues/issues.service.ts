@@ -8,8 +8,8 @@ import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 @Injectable()
 export class IssuesService {
-  issuesUrl = 'http://localhost:8080/issues';
-  issuesUrlAfterUpdateTime = 'http://localhost:8080/issues/updatetime?updatetime=';
+  issuesUrl = 'http://localhost:8083/issues';
+  issuesUrlAfterUpdateTime = 'http://localhost:8083/issues/updatetime?updatetime=';
   private handleError: HandleError;
 
   constructor(

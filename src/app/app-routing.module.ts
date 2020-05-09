@@ -1,14 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {IssuesComponent} from "./issues/issues.component";
+import {IssuesComponent} from './issues/issues.component';
 import {RouterModule, Routes} from '@angular/router';
-import {DevicesComponent} from "./devices/devices.component";
-import {SolversComponent} from "./solvers/solvers.component";
+import {DevicesComponent} from './devices/devices.component';
+import {SolversComponent} from './solvers/solvers.component';
+import {SimulatorComponent} from './simulator/simulator.component';
 
 const appRoutes: Routes = [
   {path: 'issues', component: IssuesComponent},
   {path: 'devices', component: DevicesComponent},
   {path: 'solvers', component: SolversComponent},
+  {path: 'simulators', component: SimulatorComponent},
   {path: '', redirectTo: '/issues', pathMatch: 'full'},
   {path: '**', component: IssuesComponent},
 ];

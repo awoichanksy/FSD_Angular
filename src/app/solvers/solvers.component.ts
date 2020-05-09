@@ -122,9 +122,14 @@ export class SolversComponent implements OnInit {
       solvers => {
         if (solvers != null) {
           // making an new instance triggers the change event on the unified table
-          this.deletedItems = new Collections.Set<Solver>();
           solvers.forEach(solver => {
-            this.deletedItems.add(solver);
+            const result = this.solversService.deleteSolver(solver);
+            result.subscribe(slvr => {
+              // making an new instance triggers the change event on the unified table
+              this.deletedItems = new Collections.Set<Solver>();
+              this.deletedItems.add(slvr);
+              this.table.selection.deselect(slvr);
+            });
           });
         }
       }

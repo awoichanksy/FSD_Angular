@@ -8,8 +8,9 @@ import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 @Injectable()
 export class SolversService {
-  solversUrl = 'http://localhost:8080/solvers';  // URL to web api
-  solvers_add_url = 'http://localhost:8080/solver/add';  // URL to web api
+  private solversUrl = 'http://localhost:8083/solvers';
+  private solvers_add_url = 'http://localhost:8083/solver/add';
+  private solvers_delete_url: 'http://localhost:8083/solver/delete';
   private readonly handleError: HandleError;
 
   constructor(
@@ -37,6 +38,20 @@ export class SolversService {
     return this.http.post<Solver[]>(url, solver, httpOptions)
       .pipe(
         catchError(this.handleError('addNewSolver', []))
+      );
+  }
+
+  deleteSolver(solver: Solver): Observable<Solver> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      })
+    };
+    const oid = solver.oid;
+    const url: string = this.solvers_delete_url + `?oid=${oid}`;
+    return this.http.delete<Solver>(url, httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteSolver', solver))
       );
   }
 }
