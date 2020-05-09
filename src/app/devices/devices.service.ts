@@ -8,8 +8,8 @@ import {Device} from './Device';
 
 @Injectable()
 export class DevicesService {
-  devicesUrl = 'http://localhost:8080/devices';
-  devicesAddUrl = this.devicesUrl + "/add";
+  devicesUrl = 'http://localhost:8083/devices';
+  devicesAddUrl = this.devicesUrl + '/add';
   private readonly handleError: HandleError;
 
   constructor(

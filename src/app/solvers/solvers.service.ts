@@ -8,8 +8,8 @@ import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 
 @Injectable()
 export class SolversService {
-  solversUrl = 'http://localhost:8080/solvers';  // URL to web api
-  solvers_add_url = 'http://localhost:8080/solver/add';  // URL to web api
+  solversUrl = 'http://localhost:8083/solvers';  // URL to web api
+  solvers_add_url = 'http://localhost:8083/solver/add';  // URL to web api
   private readonly handleError: HandleError;
 
   constructor(
