@@ -31,9 +31,9 @@ export class DevicesComponent implements OnInit {
     new ColumnDefinition('updateTimestamp', 'LastUpdated', (device: Device) => device.updateTimestamp),
   ];
 
-  private dataSource: Collections.Set<DataObjectClass>;
+  dataSource: Collections.Set<DataObjectClass>;
   optionSizes: number[] = [2, 5, 10, 15, 20];
-  private newOrUpdatedObjects: Collections.Set<Device>;
+  newOrUpdatedObjects: Collections.Set<Device>;
 
   private static putSingleObjectIntoCollection(device, dataCollection: Collections.Set<Device>) {
     if (device != null) {
@@ -90,9 +90,9 @@ export class DevicesComponent implements OnInit {
         if (device != null) {
           const deviceWithType = Object.assign(new Device(), device);
           const result: Observable<Device[]> = this.deviceService.addNewDevice(deviceWithType);
-          result.subscribe(device => {
+          result.subscribe(returnedDevice => {
             this.newOrUpdatedObjects = new Collections.Set<Device>();
-            DevicesComponent.putSingleObjectIntoCollection(device, this.newOrUpdatedObjects);
+            DevicesComponent.putSingleObjectIntoCollection(returnedDevice, this.newOrUpdatedObjects);
           });
         }
       }

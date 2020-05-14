@@ -8,11 +8,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class DialogSimpleComponent implements OnInit {
 
-  private dialogTitle: string;
-
-  private values: any[];
-  private submitButtonCaption: String;
-  private abortButtonCaption: String;
+  dialogTitle: string;
+  values: any[];
+  submitButtonCaption: String;
+  abortButtonCaption: String;
   private displayFunction: (x: any) => String;
 
   constructor(

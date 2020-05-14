@@ -43,7 +43,7 @@ export class UnifiedTableComponent<T extends DataObjectClass> implements OnInit,
   @Input() newOrUpdatedItems: Collections.Set<T>;
   @Input() deletedItems: Collections.Set<T>;
   @Input() optionSizes: number[] = [5, 10, 20];
-  private dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: any[];

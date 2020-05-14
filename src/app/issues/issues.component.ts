@@ -28,13 +28,13 @@ export class IssuesComponent implements OnInit, OnDestroy {
   ];
 
 
-  private dataSource: Collections.Set<DataObjectClass>;
-  private newOrUpdatedIssues: Collections.Set<DataObjectClass>;
-  private interval: number;
-  private lastPollTime: Date = new Date();
-  private alive: boolean; // used to unsubscribe from the TimerObservable  when OnDestroy is called.
-  private optionSizes: number[] = [30, 5, 10, 15];
-  private deletedItems: Collections.Set<Solver>;
+  dataSource: Collections.Set<DataObjectClass>;
+  newOrUpdatedIssues: Collections.Set<DataObjectClass>;
+  interval: number;
+  lastPollTime: Date = new Date();
+  alive: boolean; // used to unsubscribe from the TimerObservable  when OnDestroy is called.
+  optionSizes: number[] = [30, 5, 10, 15];
+  deletedItems: Collections.Set<Solver>;
 
 
   constructor(private issuesService: IssuesService) {

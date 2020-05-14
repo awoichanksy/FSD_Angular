@@ -4,19 +4,23 @@ import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Solver} from './Solver';
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
+import {environment} from '../../environments/environment';
 
 
 @Injectable()
 export class SolversService {
-  private solversUrl = 'http://localhost:8083/solvers';
-  private solvers_add_url = 'http://localhost:8083/solver/add';
-  private solvers_delete_url: 'http://localhost:8083/solver/delete';
+  private solversUrl;
+  private solvers_add_url;
+  private solvers_delete_url;
   private readonly handleError: HandleError;
 
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('SolversService');
+    this.solversUrl = environment.api_endpoint + 'solvers';
+    this.solvers_add_url = this.solversUrl + '/add';
+    this.solvers_delete_url = this.solversUrl + '/delete';
   }
 
   getSolvers(): Observable<Solver[]> {

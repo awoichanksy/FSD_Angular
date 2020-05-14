@@ -30,10 +30,10 @@ export class SolversComponent implements OnInit {
     new ColumnDefinition('updateTimestamp', 'LastUpdated', (solver: Solver) => solver.updateTimestamp)
   ];
 
-  private dataSource: Collections.Set<Solver>;
-  private optionSizes: number[] = [5, 10, 15, 20];
-  private newOrUpdatedObjects: Collections.Set<Solver>;
-  private deletedItems: Collections.Set<Solver>;
+  dataSource: Collections.Set<Solver>;
+  optionSizes: number[] = [5, 10, 15, 20];
+  newOrUpdatedObjects: Collections.Set<Solver>;
+  deletedItems: Collections.Set<Solver>;
 
 
   private static putSingleObjectIntoCollection(solver, dataCollection: Collections.Set<Solver>) {

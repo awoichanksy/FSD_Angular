@@ -4,18 +4,21 @@ import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Issue} from './Issue';
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
-
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class IssuesService {
-  issuesUrl = 'http://localhost:8083/issues';
-  issuesUrlAfterUpdateTime = 'http://localhost:8083/issues/updatetime?updatetime=';
-  private handleError: HandleError;
+
+  private readonly handleError: HandleError;
+  issuesUrl;
+  issuesUrlAfterUpdateTime;
 
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('IssuesService');
+    this.issuesUrl = environment.api_endpoint + 'issues';
+    this.issuesUrlAfterUpdateTime = this.issuesUrl + '/updatetime?updatetime=';
   }
 
   getIssues(): Observable<Issue[]> {

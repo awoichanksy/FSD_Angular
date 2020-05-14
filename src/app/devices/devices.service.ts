@@ -4,18 +4,20 @@ import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {HandleError, HttpErrorHandler} from '../http-error-handler.service';
 import {Device} from './Device';
-
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class DevicesService {
-  devicesUrl = 'http://localhost:8083/devices';
-  devicesAddUrl = this.devicesUrl + '/add';
+  devicesUrl;
+  devicesAddUrl;
   private readonly handleError: HandleError;
 
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('DevicesService');
+    this.devicesUrl = environment.api_endpoint + 'devices';
+    this.devicesAddUrl = this.devicesUrl + '/add';
   }
 
   getDevices(): Observable<Device[]> {
