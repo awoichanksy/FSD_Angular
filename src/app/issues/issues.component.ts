@@ -7,7 +7,6 @@ import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import 'rxjs/add/operator/takeWhile';
 import * as Collections from 'typescript-collections';
 import {DataObjectClass} from '../dataobject/DataObjectClass';
-import {Solver} from '../solvers/Solver';
 
 
 @Component({
@@ -28,13 +27,13 @@ export class IssuesComponent implements OnInit, OnDestroy {
   ];
 
 
-  dataSource: Collections.Set<DataObjectClass>;
-  newOrUpdatedIssues: Collections.Set<DataObjectClass>;
+  dataSource: Collections.Set<Issue>;
+  newOrUpdatedIssues: Collections.Set<Issue>;
   interval: number;
   lastPollTime: Date = new Date();
   alive: boolean; // used to unsubscribe from the TimerObservable  when OnDestroy is called.
   optionSizes: number[] = [30, 5, 10, 15];
-  deletedItems: Collections.Set<Solver>;
+  deletedItems: Collections.Set<Issue>;
 
 
   constructor(private issuesService: IssuesService) {
@@ -57,7 +56,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
         this.issuesService.getIssuesAfterUpdateTime(this.lastPollTime)
           .subscribe((issueArray) => {
             this.lastPollTime = new Date();
-            this.newOrUpdatedIssues = new Collections.Set<DataObjectClass>();
+            this.newOrUpdatedIssues = new Collections.Set<Issue>();
             this.putDataIntoCollection(issueArray, this.newOrUpdatedIssues);
           });
       });
@@ -69,7 +68,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
   }
 
   private assignDataToDataSource(issueArray: Issue[]) {
-    this.dataSource = new Collections.Set<DataObjectClass>();
+    this.dataSource = new Collections.Set<Issue>();
     this.putDataIntoCollection(issueArray, this.dataSource);
   }
 

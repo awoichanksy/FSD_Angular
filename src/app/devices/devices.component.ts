@@ -31,7 +31,7 @@ export class DevicesComponent implements OnInit {
     new ColumnDefinition('updateTimestamp', 'LastUpdated', (device: Device) => device.updateTimestamp),
   ];
 
-  dataSource: Collections.Set<DataObjectClass>;
+  dataSource: Collections.Set<Device>;
   optionSizes: number[] = [2, 5, 10, 15, 20];
   newOrUpdatedObjects: Collections.Set<Device>;
 
@@ -53,7 +53,7 @@ export class DevicesComponent implements OnInit {
   }
 
   private assignDataToDataSource(devicesArray: Device[]) {
-    this.dataSource = new Collections.Set<DataObjectClass>();
+    this.dataSource = new Collections.Set<Device>();
     this.putDataIntoCollection(devicesArray, this.dataSource);
   }
 

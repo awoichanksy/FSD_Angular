@@ -4,52 +4,96 @@
 /*@import "../node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css";*/
 /*@import "../node_modules/@angular/material/prebuilt-themes/purple-green.css";*/
 
-
 html, body {
   height: 100%;
-}
-
-.mat-drawer-content {
-  width: 100%;
-}
-
-body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  overflow-y: hidden;
 }
 
-div .body {
+header {
+  grid-area: header;
+  padding-left: 1em;
+}
+
+@media screen and (max-width: 500px) , screen and  (max-height: 500px) {
+
+  h1 {
+    font-size: 1em;
+  }
+
+  mat-sidenav {
+    grid-area: mobile-navigation;
+  }
+
+  [class*="hvr-"] {
+    margin: .1em !important;
+    padding: .5em !important;
+  }
+
+  .mat-drawer-inner-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1px, 0.5fr));
+    justify-content: space-evenly;
+  }
+
+  .level-1-component {
+    grid-template-columns: auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .table {
+    grid-area: table;
+    display: none;
+  }
+}
+
+
+@media screen and (min-width: 500px) and  (min-height: 500px) {
+  mat-sidenav {
+    grid-area: sidenav;
+  }
+}
+
+mat-sidenav-content, .body {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+  padding-left: 1em;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: max-content auto; /* zweite spalte macht Probleme */
+  grid-template-rows: max-content max-content auto max-content;
+  grid-template-areas: "header header" "mobile-navigation mobile-navigation" "sidenav main" "footer footer";
   height: 100%;
-  overflow-y: hidden !important;
+}
+
+.level-1-component {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  grid-template-areas: "header" "controls" "table";
+  justify-content: space-between;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 
-.horizontal-layout > *:last-child {
-  margin-right: 30px !important;
-  /*TODO:uses
-   /*justify-content: space-between;*/
-
+h2 {
+  grid-area: header;
 }
 
-.horizontal-layout * {
-  margin-left: 30px !important;
+.controls {
+  grid-area: controls;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
-
-.vertical-layout > *:last-child {
-  margin-bottom: 30px !important;
+.table {
+  grid-area: table;
 }
 
-.vertical-layout * {
-  margin-top: 30px !important;
-}
-
-
-.basic-container {
-  padding: 30px;
-}
-
-.level-1-component h2 {
-  padding-left: 30px;
-}

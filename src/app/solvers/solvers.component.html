@@ -1,12 +1,12 @@
 <div class="level-1-component">
   <h2>All Solvers</h2>
-  <div class="basic-container horizontal-layout">
+  <div class="controls">
     <button class="mat-raised-button mat-stroked-button" (click)=addNewSolver()>Add Solver</button>
     <button class="mat-raised-button mat-stroked-button" (click)=addDeleteSolver()
             [disabled]="getHasTableSelectedItems()">Delete Solver
     </button>
   </div>
-  <div class="mat-app-background basic-container">
+  <div class="mat-app-background table">
     <app-unified-table [columns]=columns
                        [dataArray]=dataSource
                        [optionSizes]=optionSizes
