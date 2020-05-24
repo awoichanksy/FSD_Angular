@@ -3,9 +3,13 @@
   <div class="controls">
     <button class="hvr-underline-from-center" (click)=getUpdatedIssues()>Get updated
       since {{lastPollTime |date:'hh:mm:ss'}}</button>
-    <button class="hvr-underline-from-center"
-            (click)=toggleAutoUpdate()>{{ alive == true ? 'Stop' : 'Start' }} live update
-    </button>
+
+    <mat-slide-toggle
+      (change)="toggleAutoUpdate($event)"
+      [(ngModel)]="alive">
+      {{ alive == true ? 'Stop' : 'Start' }} live update
+    </mat-slide-toggle>
+
   </div>
   <div class="mat-app-background table">
     <app-unified-table [columns]=columns

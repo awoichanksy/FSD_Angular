@@ -1,17 +1,17 @@
 <div class="level-1-component">
   <h2>Simulators</h2>
   <div class="controls">
-    <button class="hvr-underline-from-center" (click)=startSolverSimulator()
-            [disabled]=solverSimulatorActive>Start Solver Simulator
-    </button>
-    <button class="hvr-underline-from-center" (click)=stopSolverSimulator()
-            [disabled]=!solverSimulatorActive>Stop Solver Simulator
-    </button>
-    <button class="hvr-underline-from-center" (click)=startDeviceSimulator()
-            [disabled]=deviceSimulatorActive>Start Device Simulator
-    </button>
-    <button class="hvr-underline-from-center" (click)=stopDeviceSimulator()
-            [disabled]=!deviceSimulatorActive>Stop Device Simulator
-    </button>
+
+    <mat-slide-toggle
+      (change)="switchSolverSimulator($event)"
+      [(ngModel)]="solverSimulatorActive">
+      {{ solverSimulatorActive == true ? 'Stop' : 'Start' }} Solver Simulator
+    </mat-slide-toggle>
+
+    <mat-slide-toggle
+      (change)="switchDeviceSimulator($event)"
+      [(ngModel)]="deviceSimulatorActive">
+      {{ deviceSimulatorActive == true ? 'Stop' : 'Start' }} Device Simulator
+    </mat-slide-toggle>
   </div>
 </div>

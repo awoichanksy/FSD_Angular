@@ -7,6 +7,7 @@ import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import 'rxjs/add/operator/takeWhile';
 import * as Collections from 'typescript-collections';
 import {DataObjectClass} from '../dataobject/DataObjectClass';
+import {MatSlideToggleChange} from '@angular/material';
 
 
 @Component({
@@ -93,8 +94,8 @@ export class IssuesComponent implements OnInit, OnDestroy {
     this.alive = false;
   }
 
-  toggleAutoUpdate() {
-    this.alive = !this.alive;
+  toggleAutoUpdate($event: MatSlideToggleChange) {
+    this.alive = $event.checked;
     this.createPollTimer();
   }
 }

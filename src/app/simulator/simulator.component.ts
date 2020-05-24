@@ -1,5 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SimulatorService} from './simulator.service';
+import {MatSlideToggleChange} from '@angular/material/slide-toggle';
+
 
 @Component({
   selector: 'app-simulator',
@@ -23,6 +25,22 @@ export class SimulatorComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.isSolverSimulatorActive();
     this.isDeviceSimulatorActive();
+  }
+
+  switchSolverSimulator($event: MatSlideToggleChange) {
+    if ($event.checked) {
+      this.startSolverSimulator();
+    } else {
+      this.stopSolverSimulator();
+    }
+  }
+
+  switchDeviceSimulator($event: MatSlideToggleChange) {
+    if ($event.checked) {
+      this.startDeviceSimulator();
+    } else {
+      this.stopDeviceSimulator();
+    }
   }
 
   startSolverSimulator() {

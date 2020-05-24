@@ -4,7 +4,15 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import {MatDialogModule, MatInputModule, MatPaginatorModule, MatSidenavModule, MatSortModule, MatTableModule} from '@angular/material';
+import {
+  MatDialogModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpErrorHandler} from './http-error-handler.service';
 import {MyMessageService} from './my-message.service';
@@ -43,7 +51,7 @@ import {SimulatorComponent} from './simulator/simulator.component';
     MatSidenavModule,
     MatButtonToggleModule,
     MatDialogModule,
-    MatCheckboxModule,
+    MatCheckboxModule, MatSlideToggleModule,
   ],
   exports: [],
   providers: [HttpErrorHandler, MyMessageService],
