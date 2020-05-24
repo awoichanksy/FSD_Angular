@@ -7,6 +7,7 @@ import {ControlBase} from './databound-field';
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
+  styleUrls: ['./dynamic-form.component.css'],
   providers: [DataControlService]
 })
 export class DynamicFormComponent implements OnInit {

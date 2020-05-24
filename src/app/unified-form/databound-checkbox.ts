@@ -1,4 +1,4 @@
-import {ControlBase} from "./databound-field";
+import {ControlBase} from './databound-field';
 
 export class DataboundCheckbox extends ControlBase<boolean> {
   controlType = 'checkbox';

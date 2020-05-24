@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /*@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";*/
-@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+/*@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";*/
 /*@import "../node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css";*/
 /*@import "../node_modules/@angular/material/prebuilt-themes/purple-green.css";*/
 
@@ -12,11 +12,20 @@ html, body {
 header {
   grid-area: header;
   padding-left: 1em;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+h1 {
+  color: #e1e1e1;
 }
 
 @media screen and (max-width: 500px) , screen and  (max-height: 500px) {
 
   h1 {
+    font-size: 1em;
+  }
+
+  h3 {
     font-size: 1em;
   }
 
@@ -40,9 +49,67 @@ header {
   }
 }
 
+
 @media screen and (max-width: 400px) {
+
   .table {
     grid-area: table;
+  }
+
+  app-unified-table mat-form-field {
+    box-shadow: none !important;
+  }
+
+  .mobile-label {
+    width: 110px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  tr.mat-footer-row, tr.mat-row {
+    height: max-content !important;
+  }
+
+  .mat-column-selectorColumn {
+    display: none;
+  }
+
+  tr mat-cell {
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+
+  tr mat-cell:nth-child(2) {
+    padding-top: 1em;
+  }
+
+  tr mat-cell:last-child {
+    padding-bottom: 1em;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, .12);
+  }
+
+  tr mat-cell span:not(:last-child) {
+    padding-bottom: .5em;
+  }
+
+  .full-table {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .mobile-table {
     display: none;
   }
 }
@@ -58,10 +125,6 @@ mat-sidenav-content, .body {
   grid-area: main;
 }
 
-footer {
-  grid-area: footer;
-  padding-left: 1em;
-}
 
 .container {
   display: grid;
@@ -76,9 +139,16 @@ footer {
   grid-template-columns: 100%;
   grid-template-rows: auto;
   grid-template-areas: "header" "controls" "table";
-  justify-content: space-between;
+  gap: 1em;
   margin-left: 1em;
   margin-right: 1em;
+}
+
+.level-1-component > :not(:last-child) {
+  border-bottom: solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: linear-gradient(to right, #e1e1e1, white);
 }
 
 
@@ -89,11 +159,130 @@ h2 {
 .controls {
   grid-area: controls;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, max-content));
   gap: 1rem;
+  padding-bottom: 1em;
 }
 
 .table {
   grid-area: table;
+}
+
+button {
+  background-color: transparent;
+  border: 1px #e1e1e1 solid;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.hvr-underline-from-center {
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.hvr-underline-from-center:not([disabled]):before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 51%;
+  right: 51%;
+  bottom: 0;
+  background: #2098D1;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
+
+[class*="hvr-"] {
+  cursor: pointer;
+  text-decoration: none;
+  /* Smooth fonts */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class*="hvr-"]:not(button) {
+
+  /* Prevent highlight colour when element is tapped */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.mat-nav-item > a {
+  background: #e1e1e1;
+  margin-bottom: .4em;
+  padding: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  color: #666;
+}
+
+header {
+  background-color: #666;
+}
+
+footer {
+  background-color: #666;
+  grid-area: footer;
+  padding-left: 1em;
+  color: #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+}
+
+.mat-form-field-label {
+  padding-left: 1em !important;
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 0 !important;;
+}
+
+.dialog-header {
+  font-size: 1.5em;
+  color: #666;
+  background-color: #e1e1e1;
+  padding: 1em;
+}
+
+.form-fields-layout {
+  padding-top: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.dialog-bottom-buttons-layout {
+  grid-area: buttons;
+  display: grid;
+  grid-template-columns: minmax(80px, auto) minmax(80px, auto);
+  gap: 1rem;
+  margin-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  padding-top: 1em;
+  border-top: solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: linear-gradient(to right, #e1e1e1, white);
+}
+
+app-dynamic-form mat-checkbox .mat-checkbox-layout {
+  margin-bottom: 1.25em;
 }
 

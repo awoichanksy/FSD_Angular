@@ -13,6 +13,11 @@ table {
 
 .mat-cell {
   font-size: 12px;
+  padding-right: 1em;
+}
+
+td {
+  word-break: break-word;
 }
 
 mat-row {
@@ -23,3 +28,14 @@ mat-row {
   display: flex;
   justify-content: space-between;
 }
+
+.table-filter {
+  background-color: white;
+}
+
+
+.table-filter input {
+  padding-left: 1em;
+}
+
+

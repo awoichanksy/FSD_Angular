@@ -1,7 +1,11 @@
+<div class="dialog-header">
+  {{dialogTitle}}
+</div>
 <div>
-  <h2>{{dialogTitle}}</h2>
-  <app-dynamic-form [formFields]="formFields"
-                    (valueChange)='save($event)'
-                    (abortEvent)='cancel($event)'
-                    abortButtonCaption="Cancel"></app-dynamic-form>
+  <div class="dialog-content">
+    <app-dynamic-form [formFields]="formFields"
+                      (valueChange)='save($event)'
+                      (abortEvent)='cancel($event)'
+                      abortButtonCaption="Cancel"></app-dynamic-form>
+  </div>
 </div>

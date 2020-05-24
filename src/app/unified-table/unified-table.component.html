@@ -1,8 +1,8 @@
-<mat-form-field>
+<mat-form-field class="mat-elevation-z8 table-filter">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 <div class="mat-elevation-z8">
-  <div style="height: 100%; max-height: 400px; min-height: 200px; overflow: auto">
+  <div class="full-table" style="height: 100%; max-height: 400px; min-height: 200px; overflow: auto">
     <table mat-table [dataSource]=dataSource matSort>
       <!-- Generic column definition -->
       <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnID">
@@ -29,6 +29,40 @@
       <tr mat-row [@rowsAnimation]="" *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+
+
+  <div class="mobile-table" style="height: 100%; max-height: 400px; min-height: 200px; overflow: auto">
+    <table mat-table [dataSource]=dataSource matSort>
+      <!-- Generic column definition -->
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnID">
+        <ng-template [ngIf]="column.columnID != 'selectorColumn'">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }} </mat-header-cell>
+          <mat-cell *matCellDef="let rowObject">
+            <span class="mobile-label">{{ column.header }}</span>
+            <span class="mobile-value">{{ column.cellValue(rowObject) }}</span>
+          </mat-cell>
+        </ng-template>
+        <ng-template [ngIf]="column.columnID === 'selectorColumn'">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </mat-cell>
+        </ng-template>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row [@rowsAnimation]="" *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+
   <div class="mat-paginator" style="display: flex;  justify-content: space-between;">
     <div class="mat-paginator-outer-container">
       <div class="mat-paginator-container">

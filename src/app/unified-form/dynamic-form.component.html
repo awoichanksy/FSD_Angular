@@ -1,24 +1,21 @@
-<div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
-
-    <div *ngFor="let field of formFields" class="form-row">
-      <mat-form-field *ngIf="field.controlType != 'checkbox'">
-        <input matInput
-               placeholder="{{field.label}}"
-               [formControlName]="field.key"
-               [id]="field.key"
-               [type]="field.controlType">
-      </mat-form-field>
-      <mat-checkbox type="checkbox"
-                    [formControlName]="field.key"
-                    [id]="field.key"
-                    *ngIf="field.controlType == 'checkbox'">{{field.label}}</mat-checkbox>
-    </div>
-    <br>
-    <div class="horizontal-layout">
-      <button type="submit" [disabled]="!form.valid">Save</button>
-      <button type="button" *ngIf="abortButtonCaption" (click)="abort()">{{abortButtonCaption}}</button>
-    </div>
-  </form>
-</div>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="form-fields-layout" *ngFor="let field of formFields">
+    <mat-form-field *ngIf="field.controlType != 'checkbox'">
+      <input matInput
+             placeholder="{{field.label}}"
+             [formControlName]="field.key"
+             [id]="field.key"
+             [type]="field.controlType">
+    </mat-form-field>
+    <mat-checkbox type="checkbox"
+                  [formControlName]="field.key"
+                  [id]="field.key"
+                  *ngIf="field.controlType == 'checkbox'">{{field.label}}</mat-checkbox>
+  </div>
+  <div class="dialog-bottom-buttons-layout">
+    <button class="hvr-underline-from-center" type="submit" [disabled]="!form.valid">Save</button>
+    <button class="hvr-underline-from-center" type="button" *ngIf="abortButtonCaption"
+            (click)="abort()">{{abortButtonCaption}}</button>
+  </div>
+</form>
 

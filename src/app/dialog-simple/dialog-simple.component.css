@@ -2,6 +2,14 @@
   display: block;
 }
 
-.mat-dialog-content{
-  display: contents;
+.dialog-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, max-content);
+  gap: 1rem;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.dialog-bottom-buttons-layout {
+  display: grid;
 }
