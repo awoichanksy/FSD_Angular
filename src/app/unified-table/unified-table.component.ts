@@ -108,7 +108,7 @@ export class UnifiedTableComponent<T extends DataObjectClass> implements OnInit,
       this.dataArray = changes.dataArray.currentValue;
       this.dataSource.data = this.dataArray.toArray();
     }
-    if (changes.newOrUpdatedItems != null && changes.newOrUpdatedItems.currentValue != null) {
+    if (this.dataArray != null && changes.newOrUpdatedItems != null && changes.newOrUpdatedItems.currentValue != null) {
       this.newOrUpdatedItems = changes.newOrUpdatedItems.currentValue;
       this.dataArray.difference(this.newOrUpdatedItems);
       this.dataArray.union(this.newOrUpdatedItems);

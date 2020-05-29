@@ -30,7 +30,7 @@ export class IssuesService {
 
 
   getIssuesAfterUpdateTime(lastPollTime: Date): Observable<Issue[]> {
-    const isoDate = new Date(lastPollTime.getTime() - (lastPollTime.getTimezoneOffset() * 60000)).toISOString();
+    const isoDate = new Date(lastPollTime.getTime()).toISOString();
     const issuesUrlWithTime = this.issuesUrlAfterUpdateTime + isoDate;
     return this.http.get<Issue[]>(issuesUrlWithTime)
       .pipe(
