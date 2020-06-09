@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {ColumnDefinition} from './ColumnDefenition';
+import {ColumnDefinition} from './ColumnDefinition';
 import {MatSortable} from '@angular/material/typings/sort';
 import {SelectionModel} from '@angular/cdk/collections';
 import * as Collections from 'typescript-collections';
@@ -88,7 +88,7 @@ export class UnifiedTableComponent<T extends DataObjectClass> implements OnInit,
   }
 
   private selectorColumnFirst() {
-    return (a, b) => {
+    return (a, _b) => {
       if (a.columnID === selectorColumn) {
         return -1;
       } else {

@@ -1,0 +1,13 @@
+<div class="statistic-template mat-elevation-z8">
+  <h3>{{title}}</h3>
+  <canvas baseChart
+          [data]=chartData
+          [datasets]=chartDataSet
+          [labels]=chartLabels
+          [chartType]=chartType
+          [colors]=colors
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+

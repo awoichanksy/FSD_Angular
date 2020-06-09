@@ -1,0 +1,7 @@
+.statistic-cards {
+  grid-area: table;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, max-content));
+  gap: 1rem;
+  padding-bottom: 1em;
+}

@@ -29,6 +29,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {DynamicFormComponent} from './unified-form/dynamic-form.component';
 import {SimulatorComponent} from './simulator/simulator.component';
 
+import {ChartsModule} from 'ng2-charts';
+import {StatisticsDashboardComponent} from './statistics/statistics-dashboard.component';
+import {StatisticTemplateComponent} from './statistics/statistic-template/statistic-template.component';
+import {PieChartComponent} from './statistics/pie-chart/pie-chart.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +46,9 @@ import {SimulatorComponent} from './simulator/simulator.component';
     DialogSimpleComponent,
     DynamicFormComponent,
     SimulatorComponent,
+    StatisticsDashboardComponent,
+    StatisticTemplateComponent,
+    PieChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +61,7 @@ import {SimulatorComponent} from './simulator/simulator.component';
     MatButtonToggleModule,
     MatDialogModule,
     MatCheckboxModule, MatSlideToggleModule,
+    ChartsModule
   ],
   exports: [],
   providers: [HttpErrorHandler, MyMessageService],

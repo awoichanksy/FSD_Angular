@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Device} from './Device';
 import {DevicesService} from './devices.service';
 import {UnifiedTableComponent} from '../unified-table/unified-table.component';
-import {ColumnDefinition} from '../unified-table/ColumnDefenition';
+import {ColumnDefinition} from '../unified-table/ColumnDefinition';
 import * as Collections from 'typescript-collections';
 import {DataObjectClass} from '../dataobject/DataObjectClass';
 import {MatDialog, MatDialogConfig} from '@angular/material';

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Issue} from './Issue';
 import {IssuesService} from './issues.service';
 import {UnifiedTableComponent} from '../unified-table/unified-table.component';
-import {ColumnDefinition} from '../unified-table/ColumnDefenition';
+import {ColumnDefinition} from '../unified-table/ColumnDefinition';
 import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import 'rxjs/add/operator/takeWhile';
 import * as Collections from 'typescript-collections';

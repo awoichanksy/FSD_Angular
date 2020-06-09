@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ColumnDefinition} from '../unified-table/ColumnDefenition';
+import {ColumnDefinition} from '../unified-table/ColumnDefinition';
 import {UnifiedTableComponent} from '../unified-table/unified-table.component';
 import {SolversService} from './solvers.service';
 import * as Collections from 'typescript-collections';

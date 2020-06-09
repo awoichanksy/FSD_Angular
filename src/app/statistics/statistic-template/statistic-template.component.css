@@ -1,0 +1,32 @@
+.statistic-template {
+  width: auto;
+  height: auto;
+  border: 1px solid #e1e1e1;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content min-content;
+  grid-template-areas: "title" "chart";
+  gap: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.statistic-template > :not(:last-child) {
+  border-bottom: solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: linear-gradient(to right, #e1e1e1, white);
+}
+
+.statistic-template > :last-child {
+  padding-bottom: 1em;
+}
+
+
+h3 {
+  grid-area: title;
+}
+
+canvas {
+  grid-area: chart;
+}
