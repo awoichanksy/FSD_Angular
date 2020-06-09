@@ -13,7 +13,7 @@ table {
 
 .mat-cell {
   font-size: 12px;
-  padding-right: 1em;
+  padding-right: 2em;
 }
 
 td {
@@ -38,4 +38,8 @@ mat-row {
   padding-left: 1em;
 }
 
+
+.selectorColumn {
+  width: 1em;
+}
 
