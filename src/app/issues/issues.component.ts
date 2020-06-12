@@ -20,11 +20,23 @@ import {MatSlideToggleChange} from '@angular/material';
 
 export class IssuesComponent implements OnInit, OnDestroy {
 
+
+  constructor(private issuesService: IssuesService) {
+    this.alive = true;
+    this.interval = 2000;
+    if (this.alive) {
+      this.createPollTimer();
+    }
+  }
+
   columns = [
     new ColumnDefinition('name', 'Name', (issue: Issue) => issue.name),
     new ColumnDefinition('description', 'Description', (issue: Issue) => issue.description),
-    new ColumnDefinition('solutionDescription', 'SolutionDescription', (issue: Issue) => issue.solutionDescription),
-    new ColumnDefinition('updateTimestamp', 'LastUpdated', (issue: Issue) => issue.updateTimestamp)
+    new ColumnDefinition('state', 'State', (issue: Issue) => issue.issueState.name),
+    new ColumnDefinition('solver', 'Solver', (issue: Issue) => IssuesComponent.solverNameOrEmptyString(issue)),
+    new ColumnDefinition('device', 'Device', (issue: Issue) => IssuesComponent.deviceNameOrEmptyString(issue)),
+    new ColumnDefinition('solutionDescription', 'Solution Description', (issue: Issue) => issue.solutionDescription),
+    new ColumnDefinition('updateTimestamp', 'Last Updated', (issue: Issue) => issue.updateTimestamp)
   ];
 
 
@@ -37,11 +49,19 @@ export class IssuesComponent implements OnInit, OnDestroy {
   deletedItems: Collections.Set<Issue>;
 
 
-  constructor(private issuesService: IssuesService) {
-    this.alive = true;
-    this.interval = 2000;
-    if (this.alive) {
-      this.createPollTimer();
+  private static deviceNameOrEmptyString(issue: Issue) {
+    if (issue.device != null) {
+      return issue.device.name;
+    } else {
+      return '';
+    }
+  }
+
+  private static solverNameOrEmptyString(issue: Issue) {
+    if (issue.solver != null) {
+      return issue.solver.name;
+    } else {
+      return '';
     }
   }
 
