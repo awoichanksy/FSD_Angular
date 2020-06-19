@@ -8,25 +8,26 @@ import 'rxjs/add/operator/takeWhile';
 import * as Collections from 'typescript-collections';
 import {DataObjectClass} from '../dataobject/DataObjectClass';
 import {MatSlideToggleChange} from '@angular/material';
+import {TranslationService} from '../translation.service';
 
 
 @Component({
   selector: 'app-issues',
   templateUrl: './issues.component.html',
-  providers: [IssuesService, UnifiedTableComponent],
+  providers: [IssuesService, UnifiedTableComponent, TranslationService],
   styleUrls: ['./issues.component.css']
 })
 
 
 export class IssuesComponent implements OnInit, OnDestroy {
 
-
-  constructor(private issuesService: IssuesService) {
+  constructor(private issuesService: IssuesService, private translationService: TranslationService) {
     this.alive = true;
     this.interval = 2000;
     if (this.alive) {
       this.createPollTimer();
     }
+
   }
 
   columns = [
@@ -47,6 +48,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
   alive: boolean; // used to unsubscribe from the TimerObservable  when OnDestroy is called.
   optionSizes: number[] = [30, 5, 10, 15];
   deletedItems: Collections.Set<Issue>;
+  issueDescription: String;
 
 
   private static deviceNameOrEmptyString(issue: Issue) {
@@ -65,8 +67,10 @@ export class IssuesComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getIssues();
+    await this.translationService.loadTranslations();
+    this.issueDescription = this.translationService.getTranslation('issues.description');
   }
 
 

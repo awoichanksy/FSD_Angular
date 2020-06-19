@@ -1,26 +1,29 @@
 <div class="container">
-  <header><h1>Issues Management System</h1></header>
+  <header><h2>Issues Management System</h2></header>
 
-    <mat-sidenav opened mode="side" class="nav">
-      <div class="mat-nav-item">
-        <a routerLink="/issues" routerLinkActive="active" class="hvr-underline-from-center">Issues</a>
-      </div>
-      <div class="mat-nav-item ">
-        <a routerLink="/devices" routerLinkActive="active" class="hvr-underline-from-center">Devices</a>
-      </div>
-      <div class="mat-nav-item ">
-        <a routerLink="/solvers" routerLinkActive="active" class="hvr-underline-from-center">Solvers</a>
-      </div>
-      <div class="mat-nav-item ">
-        <a routerLink="/simulators" routerLinkActive="active" class="hvr-underline-from-center">Simulators</a>
-      </div>
-      <div class="mat-nav-item ">
-        <a routerLink="/statistics" routerLinkActive="active" class="hvr-underline-from-center">Statistics</a>
-      </div>
-    </mat-sidenav>
-    <div class="body">
-      <router-outlet></router-outlet>
+  <mat-sidenav opened mode="side" class="nav">
+    <div class="mat-nav-item">
+      <a routerLink="/issues" routerLinkActive="active" class="hvr-underline-from-center">Issues</a>
     </div>
+    <div class="mat-nav-item ">
+      <a routerLink="/devices" routerLinkActive="active" class="hvr-underline-from-center">Devices</a>
+    </div>
+    <div class="mat-nav-item ">
+      <a routerLink="/solvers" routerLinkActive="active" class="hvr-underline-from-center">Solvers</a>
+    </div>
+    <div class="mat-nav-item ">
+      <a routerLink="/simulators" routerLinkActive="active" class="hvr-underline-from-center">Simulators</a>
+    </div>
+    <div class="mat-nav-item ">
+      <a routerLink="/statistics" routerLinkActive="active" class="hvr-underline-from-center">Statistics</a>
+    </div>
+  </mat-sidenav>
+  <div class="body">
+    <router-outlet></router-outlet>
+  </div>
 
-  <footer><h3>Footer</h3></footer>
+  <footer>
+    <div>{{creator}} : {{creatorValue}}</div>
+    <div>{{email}} : <a href=mailto:{{emailValue}}>{{emailValue}}</a></div>
+  </footer>
 </div>

@@ -1,14 +1,14 @@
 <div class="level-1-component">
   <h2>Statistic Dashboard</h2>
   <div class="statistic-cards">
-    <div *ngIf="statisticDefinitionSolver != null" class="statistic-card">
+    <div *ngIf="statisticDefinitionSolver != null">
       <app-pie-chart
         [title]=statisticDefinitionSolver.title
         [chartLabels]=statisticDefinitionSolver.chartLabels
         [chartData]=statisticDefinitionSolver.chartData
       ></app-pie-chart>
     </div>
-    <div *ngIf="statisticDefinitionDevice != null" class="statistic-card">
+    <div *ngIf="statisticDefinitionDevice != null">
       <app-pie-chart
         [title]=statisticDefinitionDevice.title
         [chartLabels]=statisticDefinitionDevice.chartLabels

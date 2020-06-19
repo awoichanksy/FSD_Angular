@@ -1,25 +1,31 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SimulatorService} from './simulator.service';
 import {MatSlideToggleChange} from '@angular/material/slide-toggle';
+import {TranslationService} from '../translation.service';
 
 
 @Component({
   selector: 'app-simulator',
   templateUrl: './simulator.component.html',
-  providers: [SimulatorService],
+  providers: [SimulatorService, TranslationService],
   styleUrls: ['./simulator.component.css']
 })
 export class SimulatorComponent implements OnInit, OnChanges {
 
   solverSimulatorActive: boolean;
   deviceSimulatorActive: boolean;
+  solverSimulatorDescription: string;
+  deviceSimulatorDescription: string;
 
-  constructor(private simulatorService: SimulatorService) {
+  constructor(private simulatorService: SimulatorService, private translationService: TranslationService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.isSolverSimulatorActive();
     this.isDeviceSimulatorActive();
+    await this.translationService.loadTranslations();
+    this.solverSimulatorDescription = this.translationService.getTranslation('simulators.description.solver');
+    this.deviceSimulatorDescription = this.translationService.getTranslation('simulators.description.device');
   }
 
   ngOnChanges(changes: SimpleChanges): void {

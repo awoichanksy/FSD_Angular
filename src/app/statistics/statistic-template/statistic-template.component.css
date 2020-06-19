@@ -9,13 +9,14 @@
   gap: 1em;
   padding-left: 1em;
   padding-right: 1em;
+  background-color: white;
 }
 
 .statistic-template > :not(:last-child) {
   border-bottom: solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(to right, #e1e1e1, white);
+  border-image-source: linear-gradient(to right, var(--custom-gradient-color), var(--background-color));
 }
 
 .statistic-template > :last-child {

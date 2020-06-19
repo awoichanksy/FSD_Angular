@@ -1,17 +1,27 @@
 <div class="level-1-component">
   <h2>Simulators</h2>
-  <div class="controls">
-
-    <mat-slide-toggle
-      (change)="switchSolverSimulator($event)"
-      [(ngModel)]="solverSimulatorActive">
-      {{ solverSimulatorActive == true ? 'Stop' : 'Start' }} Solver Simulator
-    </mat-slide-toggle>
-
-    <mat-slide-toggle
-      (change)="switchDeviceSimulator($event)"
-      [(ngModel)]="deviceSimulatorActive">
-      {{ deviceSimulatorActive == true ? 'Stop' : 'Start' }} Device Simulator
-    </mat-slide-toggle>
+  <div class="simulator-cards">
+    <div class="simulator-template mat-elevation-z8">
+      <h3>Solver Simulator</h3>
+      <div class="description"> {{solverSimulatorDescription}}</div>
+      <div>
+        <mat-slide-toggle
+          (change)="switchSolverSimulator($event)"
+          [(ngModel)]="solverSimulatorActive">
+          {{ solverSimulatorActive == true ? 'Stop' : 'Start' }}
+        </mat-slide-toggle>
+      </div>
+    </div>
+    <div class="simulator-template mat-elevation-z8">
+      <h3>Device Simulator</h3>
+      <div class="description"> {{deviceSimulatorDescription}}</div>
+      <div>
+        <mat-slide-toggle
+          (change)="switchDeviceSimulator($event)"
+          [(ngModel)]="deviceSimulatorActive">
+          {{ deviceSimulatorActive == true ? 'Stop' : 'Start' }}
+        </mat-slide-toggle>
+      </div>
+    </div>
   </div>
 </div>

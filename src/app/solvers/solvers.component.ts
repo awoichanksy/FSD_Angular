@@ -10,17 +10,19 @@ import {Observable} from 'rxjs';
 import {ControlBase} from '../unified-form/databound-field';
 import {SolverFormFields} from './sovler.form-fields';
 import {DialogSimpleComponent} from '../dialog-simple/dialog-simple.component';
+import {TranslationService} from '../translation.service';
 
 
 @Component({
   selector: 'app-solvers',
   templateUrl: './solvers.component.html',
-  providers: [SolversService, UnifiedTableComponent],
+  providers: [SolversService, UnifiedTableComponent, TranslationService],
   styleUrls: ['./solvers.component.css']
 })
 export class SolversComponent implements OnInit {
+  solversDescription: string;
 
-  constructor(private solversService: SolversService, private dialog: MatDialog) {
+  constructor(private solversService: SolversService, private dialog: MatDialog, private translationService: TranslationService) {
   }
 
   @ViewChild(UnifiedTableComponent) table: UnifiedTableComponent<Solver>;
@@ -43,8 +45,10 @@ export class SolversComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getSolvers();
+    await this.translationService.loadTranslations();
+    this.solversDescription = this.translationService.getTranslation('solvers.description');
   }
 
   getSolvers(): void {

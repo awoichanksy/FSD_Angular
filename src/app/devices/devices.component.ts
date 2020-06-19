@@ -10,18 +10,20 @@ import {DialogComponent} from '../dialog/dialog.component';
 import {Observable} from 'rxjs';
 import {ControlBase} from '../unified-form/databound-field';
 import {DeviceFormFields} from './device.form-fields';
+import {TranslationService} from '../translation.service';
 
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
-  providers: [DevicesService, UnifiedTableComponent],
+  providers: [DevicesService, UnifiedTableComponent, TranslationService],
   styleUrls: ['./devices.component.css']
 })
 
 
 export class DevicesComponent implements OnInit {
+  devicesDescription: string;
 
-  constructor(private deviceService: DevicesService, private dialog: MatDialog) {
+  constructor(private deviceService: DevicesService, private dialog: MatDialog, private translationService: TranslationService) {
   }
 
   columns = [
@@ -42,8 +44,10 @@ export class DevicesComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getDevice();
+    await this.translationService.loadTranslations();
+    this.devicesDescription = this.translationService.getTranslation('devices.description');
   }
 
 
