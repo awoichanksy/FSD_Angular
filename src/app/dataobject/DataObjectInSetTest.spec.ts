@@ -1,14 +1,14 @@
-import * as Collections from "typescript-collections";
-import {Solver} from "../solvers/Solver";
-import {DataObjectClass} from "./DataObjectClass";
+import * as Collections from 'typescript-collections';
+import {Solver} from '../solvers/Solver';
+import {DataObjectClass} from './DataObjectClass';
 
-describe("SetUse", () => {
+describe('SetUse', () => {
 
   const date = new Date();
   const solverX: Solver = new Solver();
-  solverX.oid = "55970eb7-da93-4611-b067-9ca6272401f1";
+  solverX.oid = '55970eb7-da93-4611-b067-9ca6272401f1';
   solverX.updateTimestamp = date;
-  solverX.name = "solverX";
+  solverX.name = 'solverX';
 
   const solverY: Solver = new Solver();
   solverY.oid = "8c1e59ba-a635-4ce3-b454-822742264f26";

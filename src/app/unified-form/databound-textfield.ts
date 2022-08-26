@@ -1,4 +1,4 @@
-import {ControlBase} from "./databound-field";
+import {ControlBase} from './databound-field';
 
 export class TextBoxBound extends ControlBase<string> {
   controlType = 'textbox';

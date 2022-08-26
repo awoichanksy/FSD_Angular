@@ -1,4 +1,4 @@
-import {ControlBase} from "./databound-field";
+import {ControlBase} from './databound-field';
 
 export class DataboundDropdown extends ControlBase<string> {
   controlType = 'dropdown';
